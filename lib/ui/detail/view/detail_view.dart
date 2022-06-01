@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todoapp_getx/ui/home/view/home_view.dart';
+import '../../home/controller/network_controller.dart';
+import '../../home/view/home_view.dart';
 
 import '../../../data/model/data_model.dart';
-import '../../../data/service/controller/network_controller.dart';
 
 class DetailView extends StatelessWidget {
   DetailView({Key? key, required this.model}) : super(key: key);
@@ -40,7 +40,7 @@ class DetailView extends StatelessWidget {
         const SizedBox.shrink(),
         TextButton(
             onPressed: () {
-              _controller.dataModel[getID(model.id ?? 0)].title = textEditingController.text;
+              _controller.todoItems[getID(model.id ?? 0)].title = textEditingController.text;
 
               Get.to(const HomeView());
 

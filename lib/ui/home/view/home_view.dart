@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todoapp_getx/data/service/controller/network_controller.dart';
-import 'package:todoapp_getx/ui/detail/view/detail_view.dart';
+import '../../detail/view/detail_view.dart';
+import '../controller/network_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -29,26 +29,26 @@ class _HomeViewState extends State<HomeView> {
             )
           : Scaffold(
               appBar: AppBar(
-                title: Text('${_controller.dataModel.length.toString()} tasks'),
+                title: Text('${_controller.todoItems.length} tasks'),
               ),
               body: ListView.builder(
-                itemCount: _controller.dataModel.length,
+                itemCount: _controller.todoItems.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
                       Get.off(DetailView(
-                        model: _controller.dataModel[index],
+                        model: _controller.todoItems[index],
                       ));
                     },
                     child: ListTile(
-                      leading: Text(_controller.dataModel[index].id.toString()),
-                      title: Text(_controller.dataModel[index].title),
+                      leading: Text(_controller.todoItems[index].id.toString()),
+                      title: Text(_controller.todoItems[index].title ?? ''),
                       // trailing: Text(_controller.dataModel[index].completed.toString()),
                       trailing: Checkbox(
-                        value: _controller.dataModel[index].completed,
+                        value: _controller.todoItems[index].completed,
                         onChanged: (value) {
                           setState(() {
-                            _controller.dataModel[index].completed = value;
+                            _controller.todoItems[index].completed = value;
                           });
                         },
                       ),
